@@ -1,11 +1,71 @@
 #!/bin/sh
+# initramfs init — minimal, correct, no bullshit
+set -x
 
+echo ">>> INITRAMFS: starting"
+
+# --------------------------------------------------
+# 1. Mount kernel filesystems
+# --------------------------------------------------
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t devtmpfs devtmpfs /dev
 
-echo
-echo ">>> Alpha initramfs: BusyBox shell OK"
-echo
+# --------------------------------------------------
+# 2. Get root device from kernel cmdline (BEST way)
+# --------------------------------------------------
+ROOTDEV=""
 
-exec /bin/sh
+for x in $(cat /proc/cmdline); do
+    case "$x" in
+        root=*)
+            ROOTDEV="${x#root=}"
+            ;;
+    esac
+done
+
+# fallback if kernel cmdline missing
+[ -z "$ROOTDEV" ] && ROOTDEV="/dev/vda"
+
+echo ">>> Using root device: $ROOTDEV"
+
+# --------------------------------------------------
+# 3. Wait ONCE, not forever
+# --------------------------------------------------
+i=0
+while [ ! -b "$ROOTDEV" ]; do
+    i=$((i+1))
+    [ $i -gt 50 ] && break   # ~5 seconds max
+    sleep 0.1
+done
+
+if [ ! -b "$ROOTDEV" ]; then
+    echo "!!! Root device not found"
+    exec sh
+fi
+
+# --------------------------------------------------
+# 4. Mount real root
+# --------------------------------------------------
+mkdir -p /mnt
+mount -t ext4 "$ROOTDEV" /mnt || exec sh
+
+# --------------------------------------------------
+# 5. Move mounts for switch_root
+# --------------------------------------------------
+mkdir -p /mnt/{proc,sys,dev}
+
+mount --move /proc /mnt/proc
+mount --move /sys  /mnt/sys
+mount --move /dev  /mnt/dev
+
+# --------------------------------------------------
+# 6. Switch root (NO RETURN)
+# --------------------------------------------------
+echo ">>> Switching to real root"
+exec switch_root /mnt /sbin/init
+
+# --------------------------------------------------
+# unreachable
+# --------------------------------------------------
+exec sh

@@ -1,3 +1,6 @@
 busybox
 linux
 systemd
+rootfs.img
+rootfs
+mnt
