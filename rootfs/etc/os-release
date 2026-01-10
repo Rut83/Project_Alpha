@@ -1,0 +1,4 @@
+NAME=ShadowOS
+ID=shadowos
+VERSION=0.1
+PRETTY_NAME="Shadow OS (hand-rolled)"
