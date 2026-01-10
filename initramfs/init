@@ -1,71 +1,86 @@
 #!/bin/sh
-# initramfs init — minimal, correct, no bullshit
-set -x
+# initramfs init — systemd-safe, getty-safe, minimal
+
+set -eux
 
 echo ">>> INITRAMFS: starting"
 
 # --------------------------------------------------
-# 1. Mount kernel filesystems
+# 1. Mount kernel virtual filesystems
 # --------------------------------------------------
-mount -t proc proc /proc
-mount -t sysfs sysfs /sys
+mount -t proc     proc     /proc
+mount -t sysfs   sysfs    /sys
 mount -t devtmpfs devtmpfs /dev
 
+mkdir -p /dev/pts
+mount -t devpts devpts /dev/pts
+
+
+# Required for systemd + getty
+mkdir -p /run
+mount -t tmpfs tmpfs /run
+
 # --------------------------------------------------
-# 2. Get root device from kernel cmdline (BEST way)
+# 2. Determine root device
 # --------------------------------------------------
 ROOTDEV=""
 
-for x in $(cat /proc/cmdline); do
-    case "$x" in
+for arg in $(cat /proc/cmdline); do
+    case "$arg" in
         root=*)
-            ROOTDEV="${x#root=}"
+            ROOTDEV="${arg#root=}"
             ;;
     esac
 done
 
-# fallback if kernel cmdline missing
 [ -z "$ROOTDEV" ] && ROOTDEV="/dev/vda"
 
 echo ">>> Using root device: $ROOTDEV"
 
 # --------------------------------------------------
-# 3. Wait ONCE, not forever
+# 3. Wait for root block device (bounded)
 # --------------------------------------------------
 i=0
 while [ ! -b "$ROOTDEV" ]; do
     i=$((i+1))
-    [ $i -gt 50 ] && break   # ~5 seconds max
+    [ "$i" -gt 50 ] && break
     sleep 0.1
 done
 
-if [ ! -b "$ROOTDEV" ]; then
-    echo "!!! Root device not found"
-    exec sh
-fi
+[ -b "$ROOTDEV" ] || exec sh
 
 # --------------------------------------------------
 # 4. Mount real root
 # --------------------------------------------------
 mkdir -p /mnt
-mount -t ext4 "$ROOTDEV" /mnt || exec sh
+mount -t ext4 "$ROOTDEV" /mnt
 
 # --------------------------------------------------
-# 5. Move mounts for switch_root
+# 5. Prepare target root layout
 # --------------------------------------------------
-mkdir -p /mnt/{proc,sys,dev}
+mkdir -p /mnt/{proc,sys,dev,run}
 
+# Move mounts
 mount --move /proc /mnt/proc
 mount --move /sys  /mnt/sys
 mount --move /dev  /mnt/dev
+mount --move /run  /mnt/run
 
 # --------------------------------------------------
-# 6. Switch root (NO RETURN)
+# 6. Absolute minimum runtime state for getty/login
+# --------------------------------------------------
+# BusyBox getty REQUIREMENTS
+touch /mnt/run/utmp
+chmod 664 /mnt/run/utmp
+chown 0:0 /mnt/run/utmp
+
+# --------------------------------------------------
+# 7. Switch root
 # --------------------------------------------------
 echo ">>> Switching to real root"
 exec switch_root /mnt /sbin/init
 
 # --------------------------------------------------
-# unreachable
+# Should never reach here
 # --------------------------------------------------
 exec sh
