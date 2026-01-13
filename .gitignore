@@ -1,0 +1,8 @@
+# .gitignore
+*.img
+*.iso
+*.cpio.gz
+mnt/
+initramfs_root/
+iso_root/
+linux/
