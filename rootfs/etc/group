@@ -1,2 +1,4 @@
 dbus:x:81:
 dbus:x:81:
+messagebus:x:81:
+shadow:x:1000:

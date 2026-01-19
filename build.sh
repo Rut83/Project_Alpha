@@ -19,10 +19,6 @@ sudo mount -o loop $ROOTFS_IMG mnt/rootfs
 sudo cp -a mnt/rootfs/* $INITRAM_DIR/
 sudo umount mnt/rootfs
 
-# 3. Apply custom Project Alpha files
-sudo cp src/init $INITRAM_DIR/init
-sudo chmod +x $INITRAM_DIR/init
-
 # 4. Pack Initramfs
 echo "Packing initramfs..."
 cd $INITRAM_DIR
