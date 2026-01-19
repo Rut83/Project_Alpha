@@ -2,3 +2,5 @@ dbus:x:81:
 dbus:x:81:
 messagebus:x:81:
 shadow:x:1000:
+users:x:100:shadow
+polkitd:x:997:
