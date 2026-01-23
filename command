@@ -1,0 +1,16 @@
+qemu-system-x86_64 \
+  -machine q35 \
+  -cpu host \
+  -smp 4 \
+  -m 2048 \
+  -enable-kvm \
+  -kernel linux/arch/x86/boot/bzImage \
+  -append "root=/dev/vda rw console=ttyS0 loglevel=4 systemd.log_target=console" \
+  -drive file=rootfs.img,format=raw,if=virtio \
+  -device virtio-gpu-pci \
+  -device virtio-keyboard-pci \
+  -device virtio-mouse-pci \
+  -netdev user,id=net0 \
+  -device virtio-net-pci,netdev=net0 \
+  -display gtk,gl=on \
+  -serial stdio
