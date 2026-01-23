@@ -1,0 +1,38 @@
+.TH "wl_cursor" 3 "Version 1.24.90" "Wayland" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+wl_cursor
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <wayland\-cursor\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBimage_count\fP"
+.br
+.ti -1c
+.RI "struct \fBwl_cursor_image\fP ** \fBimages\fP"
+.br
+.ti -1c
+.RI "char * \fBname\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A cursor, as returned by \fR\fBwl_cursor_theme_get_cursor()\fP\fP 
+.SH "Field Documentation"
+.PP 
+.SS "unsigned int wl_cursor::image_count"
+How many images there are in this cursor’s animation 
+.SS "struct \fBwl_cursor_image\fP** wl_cursor::images"
+The array of still images composing this animation 
+.SS "char* wl_cursor::name"
+The name of this cursor 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Wayland from the source code\&.

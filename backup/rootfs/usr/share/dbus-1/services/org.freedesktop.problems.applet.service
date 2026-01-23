@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.freedesktop.problems.applet
+Exec=/usr/bin/abrt-applet --gapplication-service

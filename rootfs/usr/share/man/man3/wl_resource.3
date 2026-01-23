@@ -1,0 +1,169 @@
+.TH "wl_resource" 3 "Version 1.24.90" "Wayland" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+wl_resource
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <wayland\-server\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBwl_resource_post_error_vargs\fP (struct \fBwl_resource\fP *resource, uint32_t code, const char *msg, va_list argp)"
+.br
+.ti -1c
+.RI "void \fBwl_resource_post_error\fP (struct \fBwl_resource\fP *resource, uint32_t code, const char *msg,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "const char * \fBwl_resource_get_class\fP (const struct \fBwl_resource\fP *resource)"
+.br
+.ti -1c
+.RI "const struct \fBwl_interface\fP * \fBwl_resource_get_interface\fP (struct \fBwl_resource\fP *resource)"
+.br
+.ti -1c
+.RI "struct \fBwl_resource\fP * \fBwl_resource_create\fP (struct \fBwl_client\fP *\fBclient\fP, const struct \fBwl_interface\fP *interface, int \fBversion\fP, uint32_t id)"
+.br
+.in -1c
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct \fBwl_object\fP \fBobject\fP"
+.br
+.ti -1c
+.RI "\fBwl_resource_destroy_func_t\fP \fBdestroy\fP"
+.br
+.ti -1c
+.RI "struct \fBwl_list\fP \fBlink\fP"
+.br
+.ti -1c
+.RI "struct \fBwl_signal\fP \fBdeprecated_destroy_signal\fP"
+.br
+.ti -1c
+.RI "struct \fBwl_client\fP * \fBclient\fP"
+.br
+.ti -1c
+.RI "void * \fBdata\fP"
+.br
+.ti -1c
+.RI "int \fBversion\fP"
+.br
+.ti -1c
+.RI "\fBwl_dispatcher_func_t\fP \fBdispatcher\fP"
+.br
+.ti -1c
+.RI "struct wl_priv_signal \fBdestroy_signal\fP"
+.br
+.ti -1c
+.RI "struct \fBwl_signal\fP \fBdestroy_signal\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "struct \fBwl_resource\fP * wl_resource_create (struct \fBwl_client\fP * client, const struct \fBwl_interface\fP * interface, int version, uint32_t id)"
+Create a new resource object
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIclient\fP The client owner of the new resource\&. 
+.br
+\fIinterface\fP The interface of the new resource\&. 
+.br
+\fIversion\fP The version of the new resource\&. 
+.br
+\fIid\fP The id of the new resource\&. If 0, an available id will be used\&.
+.RE
+.PP
+Listeners added with \fIwl_client_add_resource_created_listener\fP will be notified at the end of this function\&. 
+.SS "const char * wl_resource_get_class (const struct \fBwl_resource\fP * resource)"
+Retrieve the interface name (class) of a resource object\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIresource\fP The resource object 
+.RE
+.PP
+
+.SS "const struct \fBwl_interface\fP * wl_resource_get_interface (struct \fBwl_resource\fP * resource)"
+Get the interface of a resource object
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIresource\fP The resource object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The interface of the object associated with the resource
+.RE
+.PP
+\fBSince\fP
+.RS 4
+1\&.24 
+.RE
+.PP
+
+.SS "void wl_resource_post_error (struct \fBwl_resource\fP * resource, uint32_t code, const char * msg,  \&.\&.\&.)"
+Post a protocol error
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIresource\fP The resource object 
+.br
+\fIcode\fP The error code 
+.br
+\fImsg\fP The error message format string 
+.br
+\fI\&.\&.\&.\fP The format string arguments 
+.RE
+.PP
+
+.SS "void wl_resource_post_error_vargs (struct \fBwl_resource\fP * resource, uint32_t code, const char * msg, va_list argp)"
+Post a protocol error
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIresource\fP The resource object 
+.br
+\fIcode\fP The error code 
+.br
+\fImsg\fP The error message format string 
+.br
+\fIargp\fP The format string argument list 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "struct \fBwl_client\fP * wl_resource::client"
+
+.SS "void * wl_resource::data"
+
+.SS "struct \fBwl_signal\fP wl_resource::deprecated_destroy_signal"
+
+.SS "\fBwl_resource_destroy_func_t\fP wl_resource::destroy"
+
+.SS "struct wl_priv_signal wl_resource::destroy_signal"
+
+.SS "struct \fBwl_signal\fP wl_resource::destroy_signal"
+
+.SS "\fBwl_dispatcher_func_t\fP wl_resource::dispatcher"
+
+.SS "struct \fBwl_list\fP wl_resource::link"
+
+.SS "struct \fBwl_object\fP wl_resource::object"
+
+.SS "int wl_resource::version"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Wayland from the source code\&.

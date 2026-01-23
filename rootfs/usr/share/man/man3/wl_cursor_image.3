@@ -1,0 +1,51 @@
+.TH "wl_cursor_image" 3 "Version 1.24.90" "Wayland" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+wl_cursor_image
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <wayland\-cursor\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fBwidth\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBheight\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBhotspot_x\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBhotspot_y\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBdelay\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A still image part of a cursor
+
+.PP
+Use \fR\fBwl_cursor_image_get_buffer()\fP\fP to get the corresponding \fRstruct wl_buffer\fP to attach to your \fRstruct wl_surface\fP\&. 
+.SH "Field Documentation"
+.PP 
+.SS "uint32_t wl_cursor_image::delay"
+Animation delay to next frame (ms) 
+.SS "uint32_t wl_cursor_image::height"
+Actual height 
+.SS "uint32_t wl_cursor_image::hotspot_x"
+Hot spot x (must be inside image) 
+.SS "uint32_t wl_cursor_image::hotspot_y"
+Hot spot y (must be inside image) 
+.SS "uint32_t wl_cursor_image::width"
+Actual width 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Wayland from the source code\&.

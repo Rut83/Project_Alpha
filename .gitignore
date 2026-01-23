@@ -6,3 +6,5 @@ mnt/
 initramfs_root/
 iso_root/
 linux/
+Hyprland
+wayland
