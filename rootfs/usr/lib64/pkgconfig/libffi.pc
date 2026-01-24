@@ -1,9 +1,0 @@
-prefix=/usr
-includedir=${prefix}/include
-libdir=${prefix}/lib64
-
-Name: ffi
-Description: Library supporting Foreign Function Interfaces
-Version: 3.2.9999
-Libs: -L${libdir} -lffi
-Cflags: -I${includedir}
