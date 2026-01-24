@@ -8,3 +8,8 @@ iso_root/
 linux/
 Hyprland
 wayland
+/rootfs/usr/
+/rootfs/lib/
+/rootfs/lib64/
+/rootfs/bin/
+/rootfs/sbin/
