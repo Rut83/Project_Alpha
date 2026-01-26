@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.Calculator.SearchProvider
-Exec=/usr/libexec/gnome-calculator-search-provider

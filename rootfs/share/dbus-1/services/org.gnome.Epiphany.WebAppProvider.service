@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.Epiphany.WebAppProvider
-Exec=/usr/libexec/epiphany-webapp-provider

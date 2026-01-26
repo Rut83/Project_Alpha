@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.exaile.Exaile
-Exec=/usr/bin/exaile

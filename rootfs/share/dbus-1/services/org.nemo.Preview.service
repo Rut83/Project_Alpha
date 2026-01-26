@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.nemo.Preview
-Exec=/usr/bin/nemo-preview

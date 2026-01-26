@@ -2,53 +2,85 @@
 set -e
 
 IMG="rootfs.img"
-SRC="rootfs"
-DST="mnt/rootfs"
+DIR="rootfs"
+MNT="mnt/rootfs"
 
-if [ "$(id -u)" != "0" ]; then
-    echo "ERROR: run this script as root (use sudo)"
-    exit 1
-fi
-
-if [ ! -f "$IMG" ]; then
-    echo "ERROR: rootfs.img not found"
-    exit 1
-fi
-
-if [ ! -d "$SRC" ]; then
-    echo "ERROR: source rootfs directory not found"
-    exit 1
-fi
-
-mkdir -p "$DST"
-
-echo "[+] Mounting rootfs image"
-mount -o loop "$IMG" "$DST"
-
-cleanup() {
-    echo "[+] Unmounting rootfs image"
-    umount "$DST"
+require_root() {
+    if [ "$(id -u)" != "0" ]; then
+        echo "ERROR: run as root (sudo)"
+        exit 1
+    fi
 }
-trap cleanup EXIT INT TERM
 
-echo "[+] Copying rootfs -> image"
+mount_img() {
+    mkdir -p "$MNT"
+    mount -o loop "$IMG" "$MNT"
+}
 
-rsync -aHAX \
-  --one-file-system \
-  --delete \
-  --exclude=/proc/* \
-  --exclude=/sys/* \
-  --exclude=/dev/* \
-  --exclude=/run/* \
-  --exclude=/tmp/* \
-  --exclude=/lost+found \
-  --exclude=/root/.bash_history \
-  "$SRC/" "$DST/"
+umount_img() {
+    umount "$MNT"
+}
 
-echo "[+] Recreating runtime directories"
-mkdir -p "$DST"/{proc,sys,dev,run,tmp}
-chmod 1777 "$DST/tmp"
+rsync_rootfs() {
+    SRC="$1"
+    DST="$2"
 
-sync
-echo "[✓] Rootfs image updated successfully"
+    echo "[+] Syncing $SRC -> $DST"
 
+    rsync -aHAX \
+        --one-file-system \
+        --delete \
+        --numeric-ids \
+        --exclude=/proc/* \
+        --exclude=/sys/* \
+        --exclude=/dev/* \
+        --exclude=/run/* \
+        --exclude=/tmp/* \
+        --exclude=/lost+found \
+        --exclude=/root/.bash_history \
+        "$SRC/" "$DST/"
+
+    mkdir -p "$DST"/{proc,sys,dev,run,tmp}
+    chmod 1777 "$DST/tmp"
+}
+
+require_root
+
+echo "Choose operation:"
+echo "1) rootfs  -> rootfs.img  (normal)"
+echo "2) rootfs.img -> rootfs  (reverse)"
+echo -n "> "
+read choice
+
+case "$choice" in
+    1)
+        [ -f "$IMG" ] || { echo "ERROR: $IMG not found"; exit 1; }
+        [ -d "$DIR" ] || { echo "ERROR: $DIR not found"; exit 1; }
+
+        echo "[+] Mounting image"
+        mount_img
+        trap umount_img EXIT INT TERM
+
+        rsync_rootfs "$DIR" "$MNT"
+        sync
+        echo "[✓] rootfs → image complete"
+        ;;
+
+    2)
+        [ -f "$IMG" ] || { echo "ERROR: $IMG not found"; exit 1; }
+
+        echo "[+] Mounting image"
+        mount_img
+        trap umount_img EXIT INT TERM
+
+        mkdir -p "$DIR"
+        rsync_rootfs "$MNT" "$DIR"
+        sync
+        echo "[✓] image → rootfs complete"
+        ;;
+
+    *)
+        echo "Invalid option"
+        exit 1
+        ;;
+esac

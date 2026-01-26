@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.fedoraproject.sealert
-Exec=/usr/bin/sealert -s

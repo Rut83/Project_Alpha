@@ -1,0 +1,13 @@
+pkill seatd || true
+rm -f /run/seatd.sock
+
+mkdir -p /run /run/user/0
+chmod 0700 /run/user/0
+
+seatd -g video &
+sleep 1
+
+export LIBSEAT_BACKEND=seatd
+export XDG_RUNTIME_DIR=/run/user/0
+
+weston --backend=drm-backend.so --use-pixman

@@ -1,6 +1,7 @@
 /* -----------------------------------------------------------------*-C-*-
-   libffi 3.2.9999 - Copyright (c) 2011, 2014 Anthony Green
-                    - Copyright (c) 1996-2003, 2007, 2008 Red Hat, Inc.
+   libffi 3.5.2
+     - Copyright (c) 2011, 2014, 2019, 2021, 2022, 2024, 2025 Anthony Green
+     - Copyright (c) 1996-2003, 2007, 2008 Red Hat, Inc.
 
    Permission is hereby granted, free of charge, to any person
    obtaining a copy of this software and associated documentation
@@ -55,24 +56,32 @@ extern "C" {
 
 /* ---- System configuration information --------------------------------- */
 
-#include <ffitarget.h>
+/* If these change, update src/mips/ffitarget.h. */
+#define FFI_TYPE_VOID       0
+#define FFI_TYPE_INT        1
+#define FFI_TYPE_FLOAT      2
+#define FFI_TYPE_DOUBLE     3
+#if 1
+#define FFI_TYPE_LONGDOUBLE 4
+#else
+#define FFI_TYPE_LONGDOUBLE FFI_TYPE_DOUBLE
+#endif
+#define FFI_TYPE_UINT8      5
+#define FFI_TYPE_SINT8      6
+#define FFI_TYPE_UINT16     7
+#define FFI_TYPE_SINT16     8
+#define FFI_TYPE_UINT32     9
+#define FFI_TYPE_SINT32     10
+#define FFI_TYPE_UINT64     11
+#define FFI_TYPE_SINT64     12
+#define FFI_TYPE_STRUCT     13
+#define FFI_TYPE_POINTER    14
+#define FFI_TYPE_COMPLEX    15
 
-/* Need minimal decorations for DLLs to works on Windows.  GCC has
-   autoimport and autoexport.  Rely on Libtool to help MSVC export
-   from a DLL, but always declare data to be imported for MSVC
-   clients.  This costs an extra indirection for MSVC clients using
-   the static version of the library, but don't worry about that.
-   Besides, as a workaround, they can define FFI_BUILDING if they
-   *know* they are going to link with the static library.  */
-#if defined _MSC_VER && !defined FFI_STATIC_BUILD
-#ifdef FFI_BUILDING
-#define FFI_EXTERN __declspec(dllexport)
-#else
-#define FFI_EXTERN __declspec(dllimport)
-#endif
-#else
-#define FFI_EXTERN extern
-#endif
+/* This should always refer to the last type code (for sanity checks).  */
+#define FFI_TYPE_LAST       FFI_TYPE_COMPLEX
+
+#include <ffitarget.h>
 
 #ifndef LIBFFI_ASM
 
@@ -124,6 +133,30 @@ typedef struct _ffi_type
   unsigned short type;
   struct _ffi_type **elements;
 } ffi_type;
+
+/* Need minimal decorations for DLLs to work on Windows.  GCC has
+   autoimport and autoexport.  Always mark externally visible symbols
+   as dllimport for MSVC clients, even if it means an extra indirection
+   when using the static version of the library.
+   Besides, as a workaround, they can define FFI_BUILDING if they
+   *know* they are going to link with the static library.  */
+#if defined _MSC_VER && !defined(FFI_STATIC_BUILD)
+# if defined FFI_BUILDING_DLL /* Building libffi.DLL with msvcc.sh */
+#  define FFI_API __declspec(dllexport)
+# else  /* Importing libffi.DLL */
+#  define FFI_API __declspec(dllimport)
+# endif
+#else
+# define FFI_API
+#endif
+
+/* The externally visible type declarations also need the MSVC DLL
+   decorations, or they will not be exported from the object file.  */
+#if defined LIBFFI_HIDE_BASIC_TYPES
+# define FFI_EXTERN FFI_API
+#else
+# define FFI_EXTERN extern FFI_API
+#endif
 
 #ifndef LIBFFI_HIDE_BASIC_TYPES
 #if SCHAR_MAX == 127
@@ -187,28 +220,20 @@ FFI_EXTERN ffi_type ffi_type_sint64;
 FFI_EXTERN ffi_type ffi_type_float;
 FFI_EXTERN ffi_type ffi_type_double;
 FFI_EXTERN ffi_type ffi_type_pointer;
-
-#if 1
 FFI_EXTERN ffi_type ffi_type_longdouble;
-#else
-#define ffi_type_longdouble ffi_type_double
-#endif
 
 #ifdef FFI_TARGET_HAS_COMPLEX_TYPE
 FFI_EXTERN ffi_type ffi_type_complex_float;
 FFI_EXTERN ffi_type ffi_type_complex_double;
-#if 1
 FFI_EXTERN ffi_type ffi_type_complex_longdouble;
-#else
-#define ffi_type_complex_longdouble ffi_type_complex_double
-#endif
 #endif
 #endif /* LIBFFI_HIDE_BASIC_TYPES */
 
 typedef enum {
   FFI_OK = 0,
   FFI_BAD_TYPEDEF,
-  FFI_BAD_ABI
+  FFI_BAD_ABI,
+  FFI_BAD_ARGTYPE
 } ffi_status;
 
 typedef struct {
@@ -218,7 +243,6 @@ typedef struct {
   ffi_type *rtype;
   unsigned bytes;
   unsigned flags;
-  unsigned isVariadic;
 #ifdef FFI_EXTRA_CIF_FIELDS
   FFI_EXTRA_CIF_FIELDS;
 #endif
@@ -260,28 +284,53 @@ typedef union {
 typedef ffi_raw ffi_java_raw;
 #endif
 
-FFI_EXTERN
+
+FFI_API
 void ffi_raw_call (ffi_cif *cif,
 		   void (*fn)(void),
 		   void *rvalue,
 		   ffi_raw *avalue);
 
-FFI_EXTERN void ffi_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_raw *raw);
-FFI_EXTERN void ffi_raw_to_ptrarray (ffi_cif *cif, ffi_raw *raw, void **args);
-FFI_EXTERN size_t ffi_raw_size (ffi_cif *cif);
+FFI_API void ffi_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_raw *raw);
+FFI_API void ffi_raw_to_ptrarray (ffi_cif *cif, ffi_raw *raw, void **args);
+FFI_API size_t ffi_raw_size (ffi_cif *cif);
 
 /* This is analogous to the raw API, except it uses Java parameter
    packing, even on 64-bit machines.  I.e. on 64-bit machines longs
    and doubles are followed by an empty 64-bit word.  */
-FFI_EXTERN
+
+#if !FFI_NATIVE_RAW_API
+FFI_API
 void ffi_java_raw_call (ffi_cif *cif,
 			void (*fn)(void),
 			void *rvalue,
-			ffi_java_raw *avalue);
+			ffi_java_raw *avalue) __attribute__((deprecated));
+#endif
 
-FFI_EXTERN void ffi_java_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_java_raw *raw);
-FFI_EXTERN void ffi_java_raw_to_ptrarray (ffi_cif *cif, ffi_java_raw *raw, void **args);
-FFI_EXTERN size_t ffi_java_raw_size (ffi_cif *cif);
+FFI_API
+void ffi_java_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_java_raw *raw) __attribute__((deprecated));
+FFI_API
+void ffi_java_raw_to_ptrarray (ffi_cif *cif, ffi_java_raw *raw, void **args) __attribute__((deprecated));
+FFI_API
+size_t ffi_java_raw_size (ffi_cif *cif) __attribute__((deprecated));
+
+/* ---- Version API ------------------------------------------------------ */
+
+#define FFI_VERSION_STRING "3.5.2"
+#define FFI_VERSION_NUMBER 30502
+
+#ifndef LIBFFI_ASM
+/* Return a version string. */
+FFI_API const char *ffi_get_version (void);
+
+/* Return the version as an unsigned long value: (x * 10000 + y * 100 + z) */
+FFI_API unsigned long ffi_get_version_number (void);
+#endif
+
+/* ---- Internals API ---------------------------------------------------- */
+
+FFI_API unsigned int ffi_get_default_abi (void);
+FFI_API size_t ffi_get_closure_size (void);
 
 /* ---- Definitions for closures ----------------------------------------- */
 
@@ -295,11 +344,17 @@ typedef struct {
   void *trampoline_table;
   void *trampoline_table_entry;
 #else
-  char tramp[FFI_TRAMPOLINE_SIZE];
+  union {
+    char tramp[FFI_TRAMPOLINE_SIZE];
+    void *ftramp;
+  };
 #endif
   ffi_cif   *cif;
   void     (*fun)(ffi_cif*,void*,void**,void*);
   void      *user_data;
+#if defined(_MSC_VER) && defined(_M_IX86)
+  void      *padding;
+#endif
 } ffi_closure
 #ifdef __GNUC__
     __attribute__((aligned (8)))
@@ -312,10 +367,10 @@ typedef struct {
 # endif
 #endif
 
-FFI_EXTERN void *ffi_closure_alloc (size_t size, void **code);
-FFI_EXTERN void ffi_closure_free (void *);
+FFI_API void *ffi_closure_alloc (size_t size, void **code);
+FFI_API void ffi_closure_free (void *);
 
-FFI_EXTERN ffi_status
+FFI_API ffi_status
 ffi_prep_closure (ffi_closure*,
 		  ffi_cif *,
 		  void (*fun)(ffi_cif*,void*,void**,void*),
@@ -327,12 +382,12 @@ ffi_prep_closure (ffi_closure*,
 #endif
   ;
 
-FFI_EXTERN ffi_status
+FFI_API ffi_status
 ffi_prep_closure_loc (ffi_closure*,
 		      ffi_cif *,
 		      void (*fun)(ffi_cif*,void*,void**,void*),
 		      void *user_data,
-		      void*codeloc);
+		      void *codeloc);
 
 #ifdef __sgi
 # pragma pack 8
@@ -348,9 +403,9 @@ typedef struct {
 
 #if !FFI_NATIVE_RAW_API
 
-  /* If this is enabled, then a raw closure has the same layout 
-     as a regular closure.  We use this to install an intermediate 
-     handler to do the transaltion, void** -> ffi_raw*.  */
+  /* If this is enabled, then a raw closure has the same layout
+     as a regular closure.  We use this to install an intermediate
+     handler to do the translation, void** -> ffi_raw*.  */
 
   void     (*translate_args)(ffi_cif*,void*,void**,void*);
   void      *this_closure;
@@ -374,8 +429,8 @@ typedef struct {
 
 #if !FFI_NATIVE_RAW_API
 
-  /* If this is enabled, then a raw closure has the same layout 
-     as a regular closure.  We use this to install an intermediate 
+  /* If this is enabled, then a raw closure has the same layout
+     as a regular closure.  We use this to install an intermediate
      handler to do the translation, void** -> ffi_raw*.  */
 
   void     (*translate_args)(ffi_cif*,void*,void**,void*);
@@ -388,35 +443,37 @@ typedef struct {
 
 } ffi_java_raw_closure;
 
-FFI_EXTERN ffi_status
+FFI_API ffi_status
 ffi_prep_raw_closure (ffi_raw_closure*,
 		      ffi_cif *cif,
 		      void (*fun)(ffi_cif*,void*,ffi_raw*,void*),
 		      void *user_data);
 
-FFI_EXTERN ffi_status
+FFI_API ffi_status
 ffi_prep_raw_closure_loc (ffi_raw_closure*,
 			  ffi_cif *cif,
 			  void (*fun)(ffi_cif*,void*,ffi_raw*,void*),
 			  void *user_data,
 			  void *codeloc);
 
-FFI_EXTERN ffi_status
+#if !FFI_NATIVE_RAW_API
+FFI_API ffi_status
 ffi_prep_java_raw_closure (ffi_java_raw_closure*,
 		           ffi_cif *cif,
 		           void (*fun)(ffi_cif*,void*,ffi_java_raw*,void*),
-		           void *user_data);
+		           void *user_data) __attribute__((deprecated));
 
-FFI_EXTERN ffi_status
+FFI_API ffi_status
 ffi_prep_java_raw_closure_loc (ffi_java_raw_closure*,
 			       ffi_cif *cif,
 			       void (*fun)(ffi_cif*,void*,ffi_java_raw*,void*),
 			       void *user_data,
-			       void *codeloc);
+			       void *codeloc) __attribute__((deprecated));
+#endif
 
 #endif /* FFI_CLOSURES */
 
-#if FFI_GO_CLOSURES
+#ifdef FFI_GO_CLOSURES
 
 typedef struct {
   void      *tramp;
@@ -424,26 +481,24 @@ typedef struct {
   void     (*fun)(ffi_cif*,void*,void**,void*);
 } ffi_go_closure;
 
-FFI_EXTERN
-ffi_status ffi_prep_go_closure (ffi_go_closure*, ffi_cif *,
+FFI_API ffi_status ffi_prep_go_closure (ffi_go_closure*, ffi_cif *,
 				void (*fun)(ffi_cif*,void*,void**,void*));
 
-FFI_EXTERN
-void ffi_call_go (ffi_cif *cif, void (*fn)(void), void *rvalue,
+FFI_API void ffi_call_go (ffi_cif *cif, void (*fn)(void), void *rvalue,
 		  void **avalue, void *closure);
 
 #endif /* FFI_GO_CLOSURES */
 
 /* ---- Public interface definition -------------------------------------- */
 
-FFI_EXTERN
+FFI_API
 ffi_status ffi_prep_cif(ffi_cif *cif,
 			ffi_abi abi,
 			unsigned int nargs,
 			ffi_type *rtype,
 			ffi_type **atypes);
 
-FFI_EXTERN
+FFI_API
 ffi_status ffi_prep_cif_var(ffi_cif *cif,
 			    ffi_abi abi,
 			    unsigned int nfixedargs,
@@ -451,47 +506,28 @@ ffi_status ffi_prep_cif_var(ffi_cif *cif,
 			    ffi_type *rtype,
 			    ffi_type **atypes);
 
-FFI_EXTERN
+FFI_API
 void ffi_call(ffi_cif *cif,
 	      void (*fn)(void),
 	      void *rvalue,
 	      void **avalue);
 
-FFI_EXTERN
+FFI_API
 ffi_status ffi_get_struct_offsets (ffi_abi abi, ffi_type *struct_type,
 				   size_t *offsets);
 
-/* Useful for eliminating compiler warnings.  */
+/* Convert between closure and function pointers.  */
+#if defined(PA_LINUX) || defined(PA_HPUX)
+#define FFI_FN(f) ((void (*)(void))((unsigned int)(f) | 2))
+#define FFI_CL(f) ((void *)((unsigned int)(f) & ~3))
+#else
 #define FFI_FN(f) ((void (*)(void))f)
+#define FFI_CL(f) ((void *)(f))
+#endif
 
 /* ---- Definitions shared with assembly code ---------------------------- */
 
-#endif /* !LIBFFI_ASM */
-
-/* If these change, update src/mips/ffitarget.h. */
-#define FFI_TYPE_VOID       0    
-#define FFI_TYPE_INT        1
-#define FFI_TYPE_FLOAT      2    
-#define FFI_TYPE_DOUBLE     3
-#if 1
-#define FFI_TYPE_LONGDOUBLE 4
-#else
-#define FFI_TYPE_LONGDOUBLE FFI_TYPE_DOUBLE
 #endif
-#define FFI_TYPE_UINT8      5   
-#define FFI_TYPE_SINT8      6
-#define FFI_TYPE_UINT16     7 
-#define FFI_TYPE_SINT16     8
-#define FFI_TYPE_UINT32     9
-#define FFI_TYPE_SINT32     10
-#define FFI_TYPE_UINT64     11
-#define FFI_TYPE_SINT64     12
-#define FFI_TYPE_STRUCT     13
-#define FFI_TYPE_POINTER    14
-#define FFI_TYPE_COMPLEX    15
-
-/* This should always refer to the last type code (for sanity checks).  */
-#define FFI_TYPE_LAST       FFI_TYPE_COMPLEX
 
 #ifdef __cplusplus
 }

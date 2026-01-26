@@ -120,8 +120,10 @@ G_BEGIN_DECLS
  * @G_PARAM_READABLE: the parameter is readable
  * @G_PARAM_WRITABLE: the parameter is writable
  * @G_PARAM_READWRITE: alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE
- * @G_PARAM_CONSTRUCT: the parameter will be set upon object construction
- * @G_PARAM_CONSTRUCT_ONLY: the parameter can only be set upon object construction
+ * @G_PARAM_CONSTRUCT: the parameter will be set upon object construction.
+ *   See [vfunc@Object.constructed] for more details
+ * @G_PARAM_CONSTRUCT_ONLY: the parameter can only be set upon object construction.
+ *   See [vfunc@Object.constructed] for more details
  * @G_PARAM_LAX_VALIDATION: upon parameter conversion (see g_param_value_convert())
  *  strict validation is not required
  * @G_PARAM_STATIC_NAME: the string used as name when constructing the 
@@ -409,7 +411,7 @@ GType	g_param_type_register_static	(const gchar		  *name,
 GOBJECT_AVAILABLE_IN_2_66
 gboolean g_param_spec_is_valid_name    (const gchar              *name);
 
-/* For registering builting types */
+/* For registering builtin types */
 GType  _g_param_type_register_static_constant (const gchar              *name,
 					       const GParamSpecTypeInfo *pspec_info,
 					       GType                     opt_type);

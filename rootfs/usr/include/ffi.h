@@ -1,23 +1,23 @@
-/* Include the correct ffi.h automatically. This helps us create prefixes
- * with multi-lib Linux and OSX/iOS universal builds. To avoid listing all
- * possible architectures here, we try the configured target arch first and then
- * include the most common multilib/universal setups in the #elif ladder */
-#ifdef __x86_64__
-#include "ffi-x86_64.h"
-#elif defined(__i386__) || defined(_M_IX86)
-#include "ffi-x86.h"
-#elif defined(__x86_64__) || defined(_M_X64)
-#include "ffi-x86_64.h"
-#elif defined(__arm__) || defined(_M_ARM)
-#include "ffi-arm.h"
-#elif defined(__aarch64__) || defined(_M_ARM64)
-#include "ffi-aarch64.h"
-#elif defined(__powerpc__) || defined(_M_PPC)
-#include "ffi-powerpc.h"
-#elif defined(__powerpc64__)
-#include "ffi-powerpc64.h"
-#elif defined (__riscv) && __riscv_xlen == 64
-#include "ffi-riscv64.h"
-#else
-#error "Unsupported Architecture"
+/* This file is here to prevent a file conflict on multiarch systems. */
+#ifdef ffi_wrapper_h
+#error "Do not define ffi_wrapper_h!"
 #endif
+#define ffi_wrapper_h
+
+#if defined(__i386__)
+#include "ffi-i386.h"
+#elif defined(__powerpc64__)
+#include "ffi-ppc64.h"
+#elif defined(__powerpc__)
+#include "ffi-ppc.h"
+#elif defined(__s390x__)
+#include "ffi-s390x.h"
+#elif defined(__s390__)
+#include "ffi-s390.h"
+#elif defined(__x86_64__)
+#include "ffi-x86_64.h"
+#else
+#error "The libffi-devel package is not usable with the architecture."
+#endif
+
+#undef ffi_wrapper_h

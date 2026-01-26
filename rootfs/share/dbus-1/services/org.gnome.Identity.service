@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.Identity
-Exec=/usr/libexec/goa-identity-service
