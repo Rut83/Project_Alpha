@@ -1,0 +1,14 @@
+DEFINED_PHASES=install postinst setup
+DESCRIPTION=3D third-person action shooter based on the Heavy Metal comics/movies
+EAPI=7
+HOMEPAGE=http://www.lokigames.com/products/fakk2/
+INHERIT=cdrom desktop wrapper
+IUSE=nocd
+KEYWORDS=~x86
+LICENSE=LOKI-EULA
+PROPERTIES=interactive
+RDEPEND=virtual/opengl
+RESTRICT=strip bindist
+SLOT=0
+_eclasses_=cdrom	8675d9def499d198e42ce3f3ded87bfc	desktop	7b6f6e9d65093966fbc8475399c5dd4e	portability	a39e3d646f76cb45d06b44cc1144b8d4	wrapper	ebaa3beeb43f7e533872b6c37168c7ad
+_md5_=edf600a9daf8181a6deaed90daafc3eb

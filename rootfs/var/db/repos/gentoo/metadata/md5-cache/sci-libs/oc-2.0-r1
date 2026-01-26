@@ -1,0 +1,15 @@
+DEFINED_PHASES=configure install
+DEPEND=net-misc/curl
+DESCRIPTION=Network Data Access Protocol client C library
+EAPI=8
+HOMEPAGE=https://opendap.org/
+INHERIT=flag-o-matic
+IUSE=doc
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2
+RDEPEND=net-misc/curl
+RESTRICT=test
+SLOT=0
+SRC_URI=https://opendap.org/pub/OC/source/oc-2.0.tar.gz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=734137b1e5bfd4102f07824aec40ffb1

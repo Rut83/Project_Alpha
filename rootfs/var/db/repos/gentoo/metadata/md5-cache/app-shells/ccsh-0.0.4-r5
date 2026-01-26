@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install
+DESCRIPTION=UNIX Shell for people already familiar with the C language
+EAPI=8
+HOMEPAGE=https://ccsh.sourceforge.net/
+INHERIT=toolchain-funcs
+KEYWORDS=amd64 ppc ~ppc64 ~sparc x86
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=https://downloads.sourceforge.net/ccsh/ccsh-0.0.4.tar.gz
+_eclasses_=toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=570a23452c90f10874d662eb11fabee9

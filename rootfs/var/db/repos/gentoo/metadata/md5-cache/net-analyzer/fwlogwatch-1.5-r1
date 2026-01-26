@@ -1,0 +1,15 @@
+BDEPEND=app-alternatives/lex nls? ( sys-devel/gettext )
+DEFINED_PHASES=compile configure install prepare
+DEPEND=virtual/libcrypt:= geoip? ( dev-libs/geoip ) zlib? ( virtual/zlib:= )
+DESCRIPTION=A packet filter and firewall log analyzer
+EAPI=7
+HOMEPAGE=http://fwlogwatch.inside-security.de/
+INHERIT=flag-o-matic strip-linguas toolchain-funcs
+IUSE=geoip nls zlib
+KEYWORDS=amd64 ~ppc ~sparc x86
+LICENSE=GPL-1
+RDEPEND=virtual/libcrypt:= geoip? ( dev-libs/geoip ) zlib? ( virtual/zlib:= )
+SLOT=0
+SRC_URI=http://fwlogwatch.inside-security.de/sw/fwlogwatch-1.5.tar.bz2
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	strip-linguas	09cafd1d21cc741d558f524675f52a59	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=7196a7e4d48923307a95b93775eeafe5

@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare test
+DESCRIPTION=Recursive-descent parser generators for C
+EAPI=8
+HOMEPAGE=https://piumarta.com/software/peg/
+INHERIT=toolchain-funcs
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+SLOT=0
+SRC_URI=https://piumarta.com/software/peg/peg-0.1.19.tar.gz
+_eclasses_=toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=1a5f0ddb5dcf4741d6f628313bd86dc6

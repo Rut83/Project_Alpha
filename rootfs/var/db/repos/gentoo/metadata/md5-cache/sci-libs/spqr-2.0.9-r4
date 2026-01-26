@@ -1,0 +1,15 @@
+BDEPEND=virtual/pkgconfig doc? ( virtual/latex-base ) >=app-portage/elt-patches-20250306
+DEFINED_PHASES=configure install prepare
+DEPEND=virtual/lapack =sci-libs/cholmod-3*[lapack,partition?] partition? ( >=sci-libs/metis-5.1.0 ) tbb? ( <dev-cpp/tbb-2021:= )
+DESCRIPTION=Multithreaded multifrontal sparse QR factorization library
+EAPI=8
+HOMEPAGE=https://people.engr.tamu.edu/davis/suitesparse.html
+INHERIT=libtool
+IUSE=doc partition tbb
+KEYWORDS=amd64 arm arm64 ~hppa ~loong ~ppc ppc64 ~riscv ~sparc ~x86
+LICENSE=GPL-2+
+RDEPEND=virtual/lapack =sci-libs/cholmod-3*[lapack,partition?] partition? ( >=sci-libs/metis-5.1.0 ) tbb? ( <dev-cpp/tbb-2021:= )
+SLOT=0
+SRC_URI=http://202.36.178.9/sage/spqr-2.0.9.tar.bz2
+_eclasses_=libtool	c81bd096be5f4c82f4e8f156ef112402	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=aa6f668189c39eee5e16f3777252e1cb

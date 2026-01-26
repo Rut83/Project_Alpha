@@ -1,0 +1,15 @@
+BDEPEND=>=gnustep-base/gnustep-make-2.0
+DEFINED_PHASES=compile configure install postinst prepare setup
+DEPEND=dev-libs/libbsd >=gnustep-libs/sqlclient-1.6.0[sqlite] >=media-libs/libmpdclient-2.7 virtual/gnustep-back
+DESCRIPTION=GNUstep client for the Music Player Daemon
+EAPI=7
+HOMEPAGE=http://gap.nongnu.org/mpdcon/
+INHERIT=gnustep-2
+IUSE=debug doc
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-libs/libbsd >=gnustep-libs/sqlclient-1.6.0[sqlite] >=media-libs/libmpdclient-2.7 virtual/gnustep-back
+SLOT=0
+SRC_URI=https://savannah.nongnu.org/download/gap/MPDCon-1.5.1.tar.gz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	gnustep-2	cfafeebb1111f944995a3bb7ae64ce8b	gnustep-base	07377f73e8155c0cfc2457c9cca702ad	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=470d31c659268f8fab2fda17d29b8681

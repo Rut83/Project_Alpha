@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install
+DESCRIPTION=converts RAW format (.bin/.cue) files to ISO/WAV format
+EAPI=8
+HOMEPAGE=http://users.andara.com/~doiron/bin2iso/
+INHERIT=toolchain-funcs
+KEYWORDS=~alpha amd64 ppc ~sparc x86
+LICENSE=public-domain
+SLOT=0
+SRC_URI=mirror://gentoo/bin2iso-19b.tar.bz2
+_eclasses_=toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=063723c0a3b37f449de455e589372f05

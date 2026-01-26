@@ -5,3 +5,18 @@ export HOSTNAME=$(cat /etc/hostname)
 if [ -n "$BASH_VERSION" ] && [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_DIR=/etc/ssl/certs
+
+# Nix package manager (Project Alpha)
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+fi
+
+# Nix (Project Alpha bootstrap)
+export PATH=/nix/store/*-nix-2.33.1/bin:$PATH
+
+# Nix (Project Alpha – fixed path)
+export PATH=/nix/store/j6k7vmkpcm26d6m78nfpcrswxlfgdn9q-nix-2.33.1/bin:$PATH
+export NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz

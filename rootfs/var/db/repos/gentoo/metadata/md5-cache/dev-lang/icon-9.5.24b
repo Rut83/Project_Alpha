@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=X? ( x11-libs/libX11 x11-libs/libXpm ) X? ( x11-libs/libXt )
+DESCRIPTION=Very high level language
+EAPI=8
+HOMEPAGE=https://www.cs.arizona.edu/icon/
+INHERIT=flag-o-matic toolchain-funcs
+IUSE=X
+KEYWORDS=~alpha amd64 ~hppa ppc ppc64 ~s390 ~sparc x86 ~x64-macos
+LICENSE=public-domain HPND
+RDEPEND=X? ( x11-libs/libX11 x11-libs/libXpm )
+SLOT=0
+SRC_URI=https://github.com/gtownsend/icon/archive/v9.5.24b.tar.gz -> icon-9.5.24b.tar.gz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=cd4faabc4b5c6f274e5dffcfa4ee7b0f

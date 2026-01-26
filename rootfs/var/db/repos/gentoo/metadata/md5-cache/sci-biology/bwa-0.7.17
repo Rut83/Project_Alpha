@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install
+DEPEND=virtual/zlib:=
+DESCRIPTION=Burrows-Wheeler Alignment Tool, a fast short genomic sequence aligner
+EAPI=7
+HOMEPAGE=https://github.com/lh3/bwa/
+INHERIT=flag-o-matic toolchain-funcs
+KEYWORDS=~amd64 ~x86 ~x64-macos
+LICENSE=GPL-3
+RDEPEND=virtual/zlib:= dev-lang/perl
+SLOT=0
+SRC_URI=https://github.com/lh3/bwa/archive/v0.7.17.tar.gz -> bwa-0.7.17.tar.gz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=c9cf0427e9fab8fa2fe83ab6b111b274

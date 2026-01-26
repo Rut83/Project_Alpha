@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install prepare
+DEPEND=media-libs/libsdl[joystick,sound,video] media-libs/sdl-mixer[mod]
+DESCRIPTION=Puzzle game where it's your job to clear the screen of gems
+EAPI=8
+HOMEPAGE=http://www.newbreedsoftware.com/gemdropx/
+INHERIT=desktop toolchain-funcs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=media-libs/libsdl[joystick,sound,video] media-libs/sdl-mixer[mod]
+SLOT=0
+SRC_URI=https://tuxpaint.org/ftp/unix/x/gemdropx/src/gemdropx-0.9.tar.gz
+_eclasses_=desktop	7b6f6e9d65093966fbc8475399c5dd4e	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=65e3fac9a1b65de16aceaeb5288f9365

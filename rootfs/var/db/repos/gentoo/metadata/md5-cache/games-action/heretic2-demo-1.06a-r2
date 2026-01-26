@@ -1,0 +1,14 @@
+BDEPEND=games-util/loki_patch
+DEFINED_PHASES=install unpack
+DESCRIPTION=Third-person classic magical action-adventure game
+EAPI=7
+HOMEPAGE=http://www.lokigames.com/products/heretic2/ http://www.hereticii.com/
+INHERIT=desktop unpacker wrapper
+KEYWORDS=~amd64 ~x86
+LICENSE=LOKI-EULA
+RDEPEND=x11-libs/libX11[abi_x86_32(-)] x11-libs/libXext[abi_x86_32(-)]
+RESTRICT=strip mirror bindist
+SLOT=0
+SRC_URI=mirror://lokigames/loki_demos/heretic2-demo.run
+_eclasses_=desktop	7b6f6e9d65093966fbc8475399c5dd4e	multiprocessing	1e32df7deee68372153dca65f4a7c21f	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3	unpacker	3b4ee72d1e2e0374fd8cd3eddfa00627	wrapper	ebaa3beeb43f7e533872b6c37168c7ad
+_md5_=fe24402a5706d97954e542d286ca3144

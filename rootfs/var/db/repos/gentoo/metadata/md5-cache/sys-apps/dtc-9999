@@ -1,0 +1,16 @@
+BDEPEND=app-alternatives/yacc app-alternatives/lex virtual/pkgconfig python? ( dev-lang/swig python_single_target_python3_11? ( dev-python/setuptools[python_targets_python3_11(-)] ) python_single_target_python3_12? ( dev-python/setuptools[python_targets_python3_12(-)] ) python_single_target_python3_13? ( dev-python/setuptools[python_targets_python3_13(-)] ) ) >=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile configure install setup test unpack
+DEPEND=python? ( python_single_target_python3_11? ( dev-lang/python:3.11 ) python_single_target_python3_12? ( dev-lang/python:3.12 ) python_single_target_python3_13? ( dev-lang/python:3.13 ) ) yaml? ( >=dev-libs/libyaml-0.2.3[static-libs?] )
+DESCRIPTION=Open Firmware device tree compiler
+EAPI=8
+HOMEPAGE=https://devicetree.org/ https://git.kernel.org/cgit/utils/dtc/dtc.git/
+INHERIT=dot-a meson python-single-r1 git-r3
+IUSE=python static-libs test yaml python_single_target_python3_11 python_single_target_python3_12 python_single_target_python3_13
+LICENSE=GPL-2
+PROPERTIES=live
+RDEPEND=python? ( python_single_target_python3_11? ( dev-lang/python:3.11 ) python_single_target_python3_12? ( dev-lang/python:3.12 ) python_single_target_python3_13? ( dev-lang/python:3.13 ) ) yaml? ( >=dev-libs/libyaml-0.2.3[static-libs?] )
+REQUIRED_USE=python? ( ^^ ( python_single_target_python3_11 python_single_target_python3_12 python_single_target_python3_13 ) )
+RESTRICT=!test? ( test )
+SLOT=0
+_eclasses_=dot-a	e5200fe17cfd2ed6fa66edd80201763a	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	git-r3	875eb471682d3e1f18da124be97dcc81	meson	ee14b47f310c323b82e6655787cd65ed	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	3a59a39e97af0f7c03f49cf3c22f262b	python-single-r1	47d8ac9be330c9366112b78fd4f8ce57	python-utils-r1	dbb8c4d794033ad7e7221eaf567a6c90	rust-toolchain	76468983281b0a7fc167ca224f84ecfd	sysroot	67000e6952ab66809b3422022b873639	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=ee08e0a40f7e3652c705fd5b4f49a10f

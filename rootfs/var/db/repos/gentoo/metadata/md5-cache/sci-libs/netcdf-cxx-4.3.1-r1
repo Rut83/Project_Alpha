@@ -1,0 +1,15 @@
+BDEPEND=>=app-portage/elt-patches-20250306
+DEFINED_PHASES=install prepare
+DEPEND=>=sci-libs/netcdf-4.2:=[hdf5]
+DESCRIPTION=C++ library for netCDF
+EAPI=8
+HOMEPAGE=https://www.unidata.ucar.edu/software/netcdf/
+INHERIT=libtool
+IUSE=examples
+KEYWORDS=amd64 ~arm ~arm64 ~x86
+LICENSE=UCAR-Unidata
+RDEPEND=>=sci-libs/netcdf-4.2:=[hdf5]
+SLOT=0/1
+SRC_URI=https://downloads.unidata.ucar.edu/netcdf-cxx/4.3.1/netcdf-cxx4-4.3.1.tar.gz
+_eclasses_=libtool	c81bd096be5f4c82f4e8f156ef112402	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=089cafba141ba93518cd7bc60cb912ae

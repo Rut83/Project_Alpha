@@ -1,0 +1,16 @@
+BDEPEND=virtual/pkgconfig doc? ( app-text/doxygen dev-python/sphinx dev-python/sphinx-lv2-theme dev-python/sphinxygen ) test? ( dev-libs/check ) >=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=media-libs/lv2 gtk2? ( >=x11-libs/gtk+-2.18.0:2 dev-libs/glib:2 ) gtk? ( >=x11-libs/gtk+-3.14.0:3 dev-libs/glib:2 ) qt6? ( dev-qt/qtbase:6[gui,widgets,X] ) X? ( x11-libs/libX11 )
+DESCRIPTION=Lightweight C library for loading and wrapping LV2 plugin UIs
+EAPI=8
+HOMEPAGE=https://drobilla.net/software/suil.html
+INHERIT=meson
+IUSE=doc gtk gtk2 qt6 test X
+KEYWORDS=amd64 ~arm64 ~loong ~mips ppc ppc64 ~riscv x86
+LICENSE=ISC
+RDEPEND=media-libs/lv2 gtk2? ( >=x11-libs/gtk+-2.18.0:2 dev-libs/glib:2 ) gtk? ( >=x11-libs/gtk+-3.14.0:3 dev-libs/glib:2 ) qt6? ( dev-qt/qtbase:6[gui,widgets,X] ) X? ( x11-libs/libX11 )
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://download.drobilla.net/suil-0.10.22.tar.xz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	meson	ee14b47f310c323b82e6655787cd65ed	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	3a59a39e97af0f7c03f49cf3c22f262b	python-utils-r1	dbb8c4d794033ad7e7221eaf567a6c90	rust-toolchain	76468983281b0a7fc167ca224f84ecfd	sysroot	67000e6952ab66809b3422022b873639	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=417cca6dc01f8dda5c573edc519064d5

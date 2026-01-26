@@ -28,3 +28,5 @@ systemd-network:x:981:
 systemd-oom:x:980:
 systemd-resolve:x:979:
 systemd-timesync:x:978:
+portage:x:250:
+nixbld:x:30000:

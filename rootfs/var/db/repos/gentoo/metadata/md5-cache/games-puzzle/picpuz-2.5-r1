@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=compile install
+DEPEND=x11-libs/gtk+:3
+DESCRIPTION=Jigsaw puzzle program
+EAPI=8
+HOMEPAGE=https://wiki.gentoo.org/wiki/No_homepage
+INHERIT=desktop flag-o-matic toolchain-funcs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3+
+RDEPEND=x11-libs/gtk+:3
+SLOT=0
+SRC_URI=mirror://gentoo/picpuz-2.5.tar.gz
+_eclasses_=desktop	7b6f6e9d65093966fbc8475399c5dd4e	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=6ba749395008aa219d26a628152db40d

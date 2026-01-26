@@ -1,0 +1,15 @@
+BDEPEND=sys-libs/binutils-libs:= virtual/pkgconfig
+DEFINED_PHASES=compile configure install prepare test
+DESCRIPTION=Programming language supporting functional, imperative & object-oriented styles
+EAPI=8
+HOMEPAGE=https://ocaml.org/
+INHERIT=flag-o-matic
+IUSE=emacs flambda latex +ocamlopt xemacs
+KEYWORDS=amd64 arm arm64 ~hppa ~loong ~mips ~ppc ppc64 ~riscv ~sparc x86
+LICENSE=QPL-1.0 LGPL-2
+PDEPEND=emacs? ( app-emacs/ocaml-mode ) xemacs? ( app-xemacs/ocaml )
+RDEPEND=sys-libs/binutils-libs:=
+SLOT=0/4.14.2
+SRC_URI=https://github.com/ocaml/ocaml/archive/4.14.2.tar.gz -> ocaml-4.14.2.tar.gz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=58ec16b6fd6cbfa1be5da774c2b77470

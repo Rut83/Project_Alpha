@@ -1,0 +1,17 @@
+BDEPEND=app-text/docbook-xml-dtd:4.5 app-text/docbook-xsl-stylesheets dev-libs/libxslt virtual/pkgconfig >=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array virtual/pkgconfig
+DEFINED_PHASES=compile configure install setup test
+DEPEND=dev-libs/glib:2 sys-apps/util-linux x11-libs/libxkbcommon introspection? ( >=dev-libs/gobject-introspection-1.82.0-r2 ) libcanberra? ( media-libs/libcanberra ) libnotify? ( x11-libs/gdk-pixbuf:2 ) notification? ( gnome-base/librsvg x11-libs/cairo x11-libs/pango x11-libs/gdk-pixbuf:2 X? ( x11-libs/cairo[X,xcb(+)] x11-libs/libxcb:=[xkb(+)] x11-libs/xcb-util x11-libs/xcb-util-wm ) ) pulseaudio? ( media-libs/libpulse media-libs/libsndfile ) purple? ( net-im/pidgin ) speech? ( app-accessibility/speech-dispatcher ) systemd? ( sys-apps/systemd:= ) upnp? ( net-libs/gssdp:1.6= ) webhook? ( net-libs/libsoup:3.0 ) websocket? ( net-libs/libsoup:3.0 ) zeroconf? ( net-dns/avahi[dbus] ) fbcon? ( virtual/os-headers )
+DESCRIPTION=A small daemon to act on remote or local events
+EAPI=8
+HOMEPAGE=https://www.eventd.org/
+INHERIT=linux-info meson systemd
+IUSE=debug fbcon +introspection libcanberra libnotify +notification pulseaudio purple speech systemd test upnp webhook websocket +X zeroconf
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3+ LGPL-3+ ISC MIT
+RDEPEND=dev-libs/glib:2 sys-apps/util-linux x11-libs/libxkbcommon introspection? ( >=dev-libs/gobject-introspection-1.82.0-r2 ) libcanberra? ( media-libs/libcanberra ) libnotify? ( x11-libs/gdk-pixbuf:2 ) notification? ( gnome-base/librsvg x11-libs/cairo x11-libs/pango x11-libs/gdk-pixbuf:2 X? ( x11-libs/cairo[X,xcb(+)] x11-libs/libxcb:=[xkb(+)] x11-libs/xcb-util x11-libs/xcb-util-wm ) ) pulseaudio? ( media-libs/libpulse media-libs/libsndfile ) purple? ( net-im/pidgin ) speech? ( app-accessibility/speech-dispatcher ) systemd? ( sys-apps/systemd:= ) upnp? ( net-libs/gssdp:1.6= ) webhook? ( net-libs/libsoup:3.0 ) websocket? ( net-libs/libsoup:3.0 ) zeroconf? ( net-dns/avahi[dbus] ) net-libs/glib-networking[ssl]
+REQUIRED_USE=X? ( notification ) fbcon? ( notification ) notification? ( || ( X fbcon ) ) test? ( websocket )
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://www.eventd.org/download/eventd/eventd-0.29.0.tar.xz
+_eclasses_=flag-o-matic	a7afe42e95fb46ce9691605acfb24672	linux-info	efd923656513c879204fec6638eadee5	meson	ee14b47f310c323b82e6655787cd65ed	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	3a59a39e97af0f7c03f49cf3c22f262b	python-utils-r1	dbb8c4d794033ad7e7221eaf567a6c90	rust-toolchain	76468983281b0a7fc167ca224f84ecfd	sysroot	67000e6952ab66809b3422022b873639	systemd	a964c0cbe818b5729da1dbfcee5be861	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3
+_md5_=ff98e4383f38392d889f18303dd9b63c
