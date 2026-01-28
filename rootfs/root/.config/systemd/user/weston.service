@@ -1,0 +1,12 @@
+[Unit]
+Description=Weston Wayland Compositor
+After=graphical-session.target
+Requires=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/weston --backend=drm-backend.so
+Restart=on-failure
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+
+[Install]
+WantedBy=default.target

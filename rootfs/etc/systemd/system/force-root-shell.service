@@ -1,0 +1,18 @@
+[Unit]
+Description=Force Root Shell on ttyS0
+After=basic.target
+Conflicts=serial-getty@ttyS0.service
+
+[Service]
+ExecStart=/bin/bash
+StandardInput=tty
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/ttyS0
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+root:*::
+wheel:!::
+messagebus:!::
+polkitd:!::
+video:!::shadow
+render:!::shadow
+input:!::shadow
+demo:!::
+test:!::
+shadow:!::

@@ -1,0 +1,27 @@
+[Unit]
+Description=Weston Wayland (shadow)
+After=seatd.service
+Requires=seatd.service
+
+[Service]
+Type=simple
+User=shadow
+Group=shadow
+
+# Explicit runtime dir (same as your manual test)
+Environment=XDG_RUNTIME_DIR=/run/user/1002
+Environment=LIBSEAT_BACKEND=seatd
+
+# Create runtime dir exactly like you did manually
+ExecStartPre=/bin/mkdir -p /run/user/1002
+ExecStartPre=/bin/chown shadow:shadow /run/user/1002
+ExecStartPre=/bin/chmod 0700 /run/user/1002
+
+# Start Weston
+ExecStart=/usr/local/bin/weston --backend=drm-backend.so --use-pixman
+
+Restart=on-failure
+
+[Install]
+WantedBy=graphical.target
+

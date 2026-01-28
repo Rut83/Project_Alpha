@@ -1,5 +1,5 @@
-if [ "$EUID" -eq 0 ]; then
-    PS1="\[\033[1;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]# "
-else
-    PS1="\[\033[1;32m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ "
-fi
+# Root bashrc
+[ -f /etc/bashrc ] && . /etc/bashrc
+
+# Project Alpha root prompt
+PS1='\[\e[1;31m\][ROOT@\h \w]#\[\e[0m\] '

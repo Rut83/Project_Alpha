@@ -1,0 +1,4 @@
+# /etc/bashrc — system-wide bash init
+
+# Load login environment
+[ -f /etc/profile ] && . /etc/profile

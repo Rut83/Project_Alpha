@@ -1,0 +1,5 @@
+2026-01-28 15:41:04.793 [info] update#setState disabled
+2026-01-28 15:41:04.794 [info] update#ctor - updates are disabled as there is no update URL
+2026-01-28 15:41:20.874 [info] Extension host with pid 1938 exited with code: 0, signal: unknown.
+2026-01-28 15:41:23.116 [warning] [storage main] detected slow close() operation: Time: 2178ms, DB size: 131072b, Large Keys: iconThemeData:96382, extensionsEnablement/malicious:5215, workbench.activity.placeholderViewlets:4916, memento/customEditors:1298, __$__targetStorageMarker:1260
+2026-01-28 15:41:24.863 [warning] [storage main] detected slow close() operation: Time: 3926ms, DB size: 20480b, Large Keys: __$__targetStorageMarker:1238, workbench.view.debug.state:593, workbench.activity.viewletsWorkspaceState:401, workbench.panel.viewContainersWorkspaceState:324, workbench.explorer.views.state:235

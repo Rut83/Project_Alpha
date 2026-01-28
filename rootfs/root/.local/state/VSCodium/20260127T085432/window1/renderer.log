@@ -1,0 +1,35 @@
+2026-01-27 08:54:34.537 [info] Started local extension host with pid 629.
+2026-01-27 08:54:34.600 [info] Started initializing default profile extensions in extensions installation folder. file:///root/.vscode-oss/extensions
+2026-01-27 08:54:34.900 [info] Completed initializing default profile extensions in extensions installation folder. file:///root/.vscode-oss/extensions
+2026-01-27 08:54:37.959 [info] [perf] Render performance baseline is 48ms
+2026-01-27 08:56:04.110 [info] Started local extension host with pid 729.
+2026-01-27 08:56:06.996 [info] [perf] Render performance baseline is 46ms
+2026-01-27 08:57:07.841 [error] An unknown error occurred. Please consult the log for more details.
+2026-01-27 08:58:53.098 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/ms-vscode.js-debug/package.json 
+2026-01-27 08:58:53.099 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/bat/package.json 
+2026-01-27 08:58:53.099 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/julia/package.json 
+2026-01-27 08:58:53.100 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/prompt-basics/package.json 
+2026-01-27 08:58:53.100 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/mermaid-chat-features/package.json 
+2026-01-27 08:58:53.101 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/javascript/package.json 
+2026-01-27 08:58:53.101 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/scss/package.json 
+2026-01-27 08:58:53.102 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/ruby/package.json 
+2026-01-27 08:58:53.104 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/shellscript/package.json 
+2026-01-27 08:58:53.105 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/rust/package.json 
+2026-01-27 08:58:53.106 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/markdown-basics/package.json 
+2026-01-27 08:58:53.107 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/json/package.json 
+2026-01-27 08:58:53.108 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/razor/package.json 
+2026-01-27 08:58:53.109 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/theme-red/package.json 
+2026-01-27 08:58:53.109 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/debug-auto-launch/package.json 
+2026-01-27 08:58:53.110 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/dotenv/package.json 
+2026-01-27 08:58:53.110 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-defexpr/channels/nixpkgs/pkgs/applications/editors/vim/plugins/patches/markdown-preview-nvim/package.json 
+2026-01-27 08:58:53.112 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/diff/package.json 
+2026-01-27 08:58:53.112 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/gulp/package.json 
+2026-01-27 08:58:53.113 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/dart/package.json 
+2026-01-27 08:58:53.114 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/lib/vscode/resources/app/extensions/html/package.json 
+2026-01-27 08:58:53.114 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-defexpr/channels/nixpkgs/ci/github-script/package.json 
+2026-01-27 08:58:53.117 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-defexpr/channels/nixpkgs/pkgs/by-name/ma/matrix-appservice-discord/package.json 
+2026-01-27 08:58:53.118 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-defexpr/channels/nixpkgs/pkgs/by-name/wi/windsurf/update/package.json 
+2026-01-27 08:58:53.119 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/nixpkgs/pkgs/development/tools/yarn2nix-moretea/yarn2nix/package.json 
+2026-01-27 08:58:53.120 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/nixpkgs/pkgs/tools/admin/meshcentral/package.json 
+2026-01-27 08:58:53.121 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/nixpkgs/pkgs/by-name/wi/windsurf/update/package.json 
+2026-01-27 08:58:53.121 [warning] [backup tracker] suspended, ignoring unregister event file:///root/.nix-profile/nixpkgs/pkgs/by-name/ma/matrix-appservice-discord/package.json 

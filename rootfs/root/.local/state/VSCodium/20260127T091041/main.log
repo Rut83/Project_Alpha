@@ -1,0 +1,4 @@
+2026-01-27 09:10:41.782 [info] update#setState disabled
+2026-01-27 09:10:41.782 [info] update#ctor - updates are disabled as there is no update URL
+2026-01-27 09:10:48.511 [warning] [storage main] detected slow close() operation: Time: 3457ms, DB size: 28672b, Large Keys: terminal.integrated.bufferState:7155, __$__targetStorageMarker:1445, workbench.view.debug.state:584, memento/workbench.editors.files.textFileEditor:429, workbench.activity.viewletsWorkspaceState:400
+2026-01-27 09:10:50.215 [warning] [storage main] detected slow close() operation: Time: 5162ms, DB size: 151552b, Large Keys: iconThemeData:96382, colorThemeData:14342, extensionsEnablement/malicious:5166, __$__targetStorageMarker:1615, workbench.activity.placeholderViewlets:1429

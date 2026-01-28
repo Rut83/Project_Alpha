@@ -1,0 +1,12 @@
+{"timestamp":15982,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"loadfail_reason":"N/A","can_load":"true","path_key":"clean","glean_timestamp":"1769626648531"}}
+{"timestamp":15983,"category":"session_restore","name":"backup_can_be_loaded_session_file","extra":{"glean_timestamp":"1769626648531","path_key":"clean","loadfail_reason":"N/A","can_load":"true"}}
+{"timestamp":15983,"category":"session_restore","name":"shutdown_success_session_startup","extra":{"shutdown_ok":"false","glean_timestamp":"1769626648531","shutdown_reason":"N/A"}}
+{"timestamp":16262,"category":"webcompatreporting","name":"reason_dropdown","extra":{"glean_timestamp":"1769626648810","setting":"required"}}
+{"timestamp":16605,"category":"nimbus_events","name":"startup_database_consistency","extra":{"trigger":"startup","db_active_count":"2","total_db_count":"2","total_store_count":"2","glean_timestamp":"1769626649153","primary":"jsonfile","store_active_count":"2"}}
+{"timestamp":16651,"category":"jsonfile","name":"load_autofillprofiles","extra":{"glean_timestamp":"1769626649200","value":"error_notfounderror"}}
+{"timestamp":16711,"category":"doh","name":"state_rollback","extra":{"value":"null","glean_timestamp":"1769626649260"}}
+{"timestamp":17024,"category":"nimbus_events","name":"is_ready","extra":{"glean_timestamp":"1769626649573"}}
+{"timestamp":17166,"category":"containers","name":"container_profile_loaded","extra":{"containers":"4","glean_timestamp":"1769626649714"}}
+{"timestamp":17219,"category":"jsonfile","name":"load_logins","extra":{"value":"error_notfounderror","glean_timestamp":"1769626649768"}}
+{"timestamp":17239,"category":"upgrade_dialog","name":"trigger_reason","extra":{"glean_timestamp":"1769626649788","value":"not-major"}}
+{"timestamp":21064,"category":"doh","name":"state_shutdown","extra":{"value":"null","glean_timestamp":"1769626653613"}}

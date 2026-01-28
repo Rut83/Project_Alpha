@@ -1,0 +1,19 @@
+[Unit]
+Description=Weston Wayland Compositor (User)
+After=default.target
+
+[Service]
+Type=simple
+
+Environment=LIBSEAT_BACKEND=seatd
+Environment=XDG_SESSION_TYPE=wayland
+
+ExecStart=/usr/local/bin/weston \
+  --backend=drm-backend.so \
+  --use-pixman
+
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+

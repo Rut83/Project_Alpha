@@ -1,14 +1,29 @@
-# User bashrc — Project Alpha
+# ~/.bashrc for shadow
 
-GREEN="\[\e[1;32m\]"
-BLUE="\[\e[1;34m\]"
-RESET="\[\e[0m\]"
+# Load system bashrc
+[ -f /etc/bashrc ] && . /etc/bashrc
 
-PS1="${GREEN}\u@\h${RESET}:${BLUE}\w${RESET}$ "
+# Git branch in prompt
+git_branch() {
+    git symbolic-ref --short HEAD 2>/dev/null
+}
 
-alias ll='ls -lah --color=auto'
-alias grep='grep --color=auto'
-alias df='df -h'
-alias free='free -h'
+# Prompt colors
+BLUE='\[\e[34m\]'
+GREEN='\[\e[32m\]'
+GRAY='\[\e[90m\]'
+RESET='\[\e[0m\]'
 
-echo "Welcome to Project Alpha"
+# Prompt:
+# shadow@host ~/path (git-branch)
+PS1="${GREEN}\u${GRAY}@\h ${BLUE}\w${GRAY} \$(git_branch)${RESET}\n$ "
+
+# Useful aliases
+alias ll='ls -lah'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias gs='git status'
+alias gl='git log --oneline --graph --decorate'
+
+# Editor default
+export EDITOR=vi

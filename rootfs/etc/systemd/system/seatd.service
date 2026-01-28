@@ -1,0 +1,13 @@
+[Unit]
+Description=Seat management daemon
+After=systemd-logind.service
+Before=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/seatd -g video
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

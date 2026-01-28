@@ -1,0 +1,4 @@
+# ~/.bash_profile
+
+# Load bashrc for login shells
+[ -f ~/.bashrc ] && . ~/.bashrc

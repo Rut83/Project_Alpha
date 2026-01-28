@@ -1,0 +1,85 @@
+{
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "6aa1a7a23e5008c9994241cd99b58f6a02657994c3cba5d3333a9f34619e2d63",
+    "telemetry.devDeviceId": "68ebf651-5adf-4f6f-9bba-37a730491593",
+    "backupWorkspaces": {
+        "workspaces": [
+            {
+                "id": "3d6535b9f0635e72662a6fd6fac2acfa",
+                "configURIPath": "file:///root/Workspaces/1769505129348/workspace.json"
+            }
+        ],
+        "folders": [
+            {
+                "folderUri": "file:///root"
+            }
+        ],
+        "emptyWindows": []
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///root": "__default__profile__"
+        },
+        "emptyWindows": {}
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1f1f1f",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#cccccc",
+            "background": "#1f1f1f",
+            "editorBackground": "#1f1f1f",
+            "titleBarBackground": "#181818",
+            "titleBarBorder": "#2b2b2b",
+            "activityBarBackground": "#181818",
+            "activityBarBorder": "#2b2b2b",
+            "sideBarBackground": "#181818",
+            "sideBarBorder": "#2b2b2b",
+            "statusBarBackground": "#181818",
+            "statusBarBorder": "#2b2b2b",
+            "statusBarNoFolderBackground": "#1f1f1f"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 170,
+            "auxiliaryBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "workspaceIdentifier": {
+                "id": "3d6535b9f0635e72662a6fd6fac2acfa",
+                "configURIPath": "file:///root/Workspaces/1769505129348/workspace.json"
+            },
+            "backupPath": "/root/Backups/3d6535b9f0635e72662a6fd6fac2acfa",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 480
+            }
+        },
+        "openedWindows": []
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 170,
+            "auxiliaryBarWidth": 300,
+            "workspaces": {
+                "5d4a45dd8cad14a2ca435c698e8e083d": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                }
+            }
+        }
+    }
+}

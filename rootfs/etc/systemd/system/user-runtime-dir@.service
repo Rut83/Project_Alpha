@@ -1,0 +1,12 @@
+[Unit]
+Description=Create runtime dir for user %i
+Before=weston@%i.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mkdir -p /run/user/%i
+ExecStart=/usr/bin/chmod 0700 /run/user/%i
+ExecStart=/usr/bin/chown %i:%i /run/user/%i
+
+[Install]
+WantedBy=multi-user.target
